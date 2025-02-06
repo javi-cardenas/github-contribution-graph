@@ -12,8 +12,6 @@
 
 <h1>How to use</h1>
 
-
-
 <p>
   1. Make a private repo on GitHub.
 </p>
@@ -45,6 +43,30 @@ You need to have Python and Git installed to be able to execute the script.
 
 <h1>How it works</h1>
 
+<h2>User Input Collection</h2>
+  <ul>
+    <li>The user is prompted to enter a year (between 1970 and the current year).</li>
+    <li>The user specifies the commit frequency (1% to 100%) or accepts the default (~70%).</li>
+  </ul>
+
+<h2>Commit Generation</h2>
+<ul>
+    <li>The script iterates through every day of the selected year.</li>
+    <li>For each day, it randomly decides (based on the percentage) whether a commit will be made.</li>
+    <li>If a commit is made, it:
+      <ul>
+        <li>Creates/modifies a temporary file (<code>temp.txt</code>).</li>
+        <li>Stages (<code>git add</code>), commits (<code>git commit</code> with a timestamp), and pushes (<code>git push</code>).</li>
+        <li>Generates 1 to 4 commits per day to vary contribution intensity.</li>
+      </ul>
+    </li>
+</ul>
+
+<h2>Pushing to GitHub</h2>
+  <ul>
+    <li>Once all commits are generated, the script pushes them to GitHub.</li>
+    <li>It then removes <code>temp.txt</code> and makes a final commit to clean up.</li>
+  </ul>
 
 <h1>Troubleshooting</h1>
 1. It takes several minutes for GitHub to update your contribution graph. Check if the repo has any new commits and wait a couple of minutes.
