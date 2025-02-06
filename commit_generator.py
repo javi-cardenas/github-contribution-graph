@@ -28,7 +28,7 @@ def get_user_year() -> int:
 
 def get_user_percentage() -> float:
     """Prompt the user to enter a percentage for commit frequency."""
-    default_percent = 80
+    default_percent = 70 # Mon-Fri = 5 days; 5 days / 7 days in a week ~= 70%
     while True:
         try:
             user_input = input(f"\nEnter a number between 1 and 100 to set commit frequency, or press 'Enter' to use the default {default_percent}%: ")
@@ -42,15 +42,15 @@ def get_user_percentage() -> float:
             print("⚠️ Invalid input! Please enter a number between 1 and 100...\n")
 
 
-def create_commits(year: int, percent: float = 0.8) -> None:
+def create_commits(year: int, percent: float) -> None:
     """Generate commits based on user input for the given year."""
-    print(f"\n  Creating commits for {year}...\n")
+    print(f"\n   Creating commits for {year}...\n")
 
     start_date = datetime(year, 1, 1)
     days_in_year = (datetime(year + 1, 1, 1) - start_date).days  # Correct leap year calculation
 
     for day in range(days_in_year):
-        if random.random() >= percent:  # Default 80% chance of coding
+        if random.random() >= percent:  # Default chance of coding
             continue
         
         commit_date = start_date + timedelta(days=day)
