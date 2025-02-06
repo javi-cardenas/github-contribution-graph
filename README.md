@@ -1,7 +1,5 @@
 # GitHub Contribution Graph Activity
 
-A python script to generate activity for the contribution graph on your GitHub profile.
-
 <div align="center">
   <h2>Before</h2>
   <img src="/images/before.png" alt="Before" width = "1000">
@@ -19,10 +17,12 @@ A python script to generate activity for the contribution graph on your GitHub p
   <img src="/images/repo.png" alt="New Private Repo" height="750">
 </div>
 
-3. Run my activity.py script in your new private repo.
+2. Run the python script (commit_generator.py) in your new private repo.
 
-
-   
+<div align="center">
+  <h2>CLI Screenshot</h2>
+  <img src="/images/cli.png" alt="CLI">
+</div>
 
 5. 
 Delete repo
