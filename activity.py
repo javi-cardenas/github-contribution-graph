@@ -2,10 +2,19 @@ from datetime import datetime, timedelta
 import os
 import random
 
-def get_user_year():
+def main():
+    "Main function to get user input, create commits, and push them."
+    year = get_user_year()
+    percent = get_user_percentage()
+    create_commits(year, percent)
+    push_commits()
+
+
+def get_user_year() -> int:
+    """Prompt user to enter a valid year."""
+    current_year = datetime.now().year
     while True:
         try:
-            current_year = datetime.now().year
             year = int(input(f"\nEnter a year between 1970 and {current_year}: "))
             if 1970 <= year <= current_year:
                 confirmation = input(f"You entered {year}, enter 'y' to confirm: ")
@@ -16,7 +25,8 @@ def get_user_year():
         except ValueError:
             print("Please enter a valid four-digit year...\n")
 
-def get_user_percentage():
+
+def get_user_percentage() -> float:
     while True:
         try:
             percent = int(input(f"\nThis number will approximate how full your contribution graph will be, the default value is 80%.\nPress 'Enter' to use the default value or enter a number between 1 and 100: "))
@@ -34,7 +44,9 @@ def get_user_percentage():
             if confirmation == "y":
                 return percent / 100
 
-def create_commits(year, percent=0.8):
+
+
+def create_commits(year: int, percent: float = 0.8) -> None:
     print(f"\nCreating commits for {year}...\n")
 
     start_date = datetime(year, 1, 1)
@@ -56,7 +68,8 @@ def create_commits(year, percent=0.8):
 
     print("\nAll commits have been created!\n")
 
-def push_commits():
+
+def push_commits() -> None:
     print("\nPushing commits to GitHub...\n")
 
     os.system("git push origin main")
@@ -69,3 +82,7 @@ def push_commits():
     os.system("git push origin main")
     
     print("\nDone!\n")
+
+
+if __name__ in "__main__":
+    main()
