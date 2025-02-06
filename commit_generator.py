@@ -42,14 +42,9 @@ def get_user_percentage() -> float:
             print("⚠️ Invalid input! Please enter a number between 1 and 100...\n")
 
 
-def confirm(prompt: str) -> bool:
-    """Utility function to get user confirmation."""
-    return input(prompt).strip().lower() == "y"
-
-
 def create_commits(year: int, percent: float = 0.8) -> None:
     """Generate commits based on user input for the given year."""
-    print(f"\n📅 Creating commits for {year}...\n")
+    print(f"\n  Creating commits for {year}...\n")
 
     start_date = datetime(year, 1, 1)
     days_in_year = (datetime(year + 1, 1, 1) - start_date).days  # Correct leap year calculation
@@ -69,23 +64,28 @@ def create_commits(year: int, percent: float = 0.8) -> None:
             commit_message = f"Auto commit for {commit_date.date()}"
             run_command(f'git commit -m "{commit_message}" --date="{commit_date}" --no-edit')
 
-    print("\n✅ All commits have been created!\n")
+    print("\n   All commits have been created!\n")
 
 
 def push_commits() -> None:
     """Push commits to GitHub and clean up temp files."""
-    print("\n🚀 Pushing commits to GitHub...\n")
+    print("\n   Pushing commits to GitHub...\n")
 
     run_command("git push origin main")
 
-    print("\n🗑️ Removing temp.txt from repo...\n")
+    # print("\n   Removing temp.txt from repo...\n")
     if os.path.exists("temp.txt"):
         os.remove("temp.txt")
     run_command("git add .")
     run_command('git commit -m "Removed temp.txt"')
     run_command("git push origin main")
 
-    print("\n✅ Done!\n")
+    print("\n✅ Done! Please refesh your GitHub profile to view changes!\n")
+
+
+def confirm(prompt: str) -> bool:
+    """Utility function to get user confirmation."""
+    return input(prompt).strip().lower() == "y"
 
 
 def run_command(command: str) -> None:
